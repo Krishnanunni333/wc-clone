@@ -55,22 +55,43 @@ var wcCmd = &cobra.Command{
 	Short: "A brief description of your command",
 	Long: help_doc,
 	Run: func(cmd *cobra.Command, args []string) {
-        if help == true{
-            fmt.Println(help_doc)
-            return
-        }
-        var fileName string
-        fileName = args[0]
-        if bytes{
-            fi, err := os.Stat(fileName)
-            if err != nil {
-                return
-            }
+        switch {
 
-            fmt.Println(fi.Size())
-            return
+            case help:
+                fmt.Println(help_doc)
+
+            case bytes:
+                printBytes(args[0])
+
+            case chars:
+                fmt.Println(openFile(args[0], 1), args[0])
+
+            case max_line_length:
+                fmt.Println(openFile(args[0], 2), args[0])
+
+            case words:
+                fmt.Println(openFile(args[0], 3), args[0])
+
+            case lines:
+                fmt.Println(openFile(args[0], 4), args[0])
+
+            default:
+                fmt.Println("WRONG COMMAND !")
+                fmt.Println(help_doc)
         }
-         file, err := os.Open(fileName)
+	},
+}
+
+func printBytes(file string) {
+    fi, err := os.Stat(file)
+    if err != nil {
+        return
+    }
+    fmt.Println(fi.Size(), file)
+}
+
+func openFile(files string, flag int) int {
+    file, err := os.Open(files)
          if err != nil {
              fmt.Println("Err ", err)
          }
@@ -88,19 +109,18 @@ var wcCmd = &cobra.Command{
              splitLines := strings.Split(line, " ")
              wordss += len(splitLines)
          }
-         if chars{
-             fmt.Println(characters, fileName)
-        }else if max_line_length{
-            fmt.Println(max, fileName)
-        }else if words{
-            fmt.Println(wordss, fileName)
-        }else if lines{
-            fmt.Println(liness, fileName)
-        }else{
-            fmt.Println("WRONG COMMAND !")
-            fmt.Println(help_doc)
-        }
-	},
+
+    if flag == 1{
+        return characters
+    }else if flag== 2{
+        return max
+    }else if flag== 3{
+        return wordss
+    }else if flag== 4{
+        return liness
+    }
+
+    return 0
 }
 
 func init() {
