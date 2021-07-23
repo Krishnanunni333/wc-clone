@@ -61,19 +61,19 @@ var wcCmd = &cobra.Command{
                 fmt.Println(help_doc)
 
             case bytes:
-                printBytes(args[0])
+                fmt.Println(PrintBytes(args[0]), args[0])
 
             case chars:
-                fmt.Println(openFile(args[0], 1), args[0])
+                fmt.Println(OpenFile(args[0], 1), args[0])
 
             case max_line_length:
-                fmt.Println(openFile(args[0], 2), args[0])
+                fmt.Println(OpenFile(args[0], 2), args[0])
 
             case words:
-                fmt.Println(openFile(args[0], 3), args[0])
+                fmt.Println(OpenFile(args[0], 3), args[0])
 
             case lines:
-                fmt.Println(openFile(args[0], 4), args[0])
+                fmt.Println(OpenFile(args[0], 4), args[0])
 
             default:
                 fmt.Println("WRONG COMMAND !")
@@ -82,15 +82,15 @@ var wcCmd = &cobra.Command{
 	},
 }
 
-func printBytes(file string) {
+func PrintBytes(file string) int {
     fi, err := os.Stat(file)
     if err != nil {
-        return
+        return 0
     }
-    fmt.Println(fi.Size(), file)
+    return int(fi.Size())
 }
 
-func openFile(files string, flag int) int {
+func OpenFile(files string, flag int) int {
     file, err := os.Open(files)
          if err != nil {
              fmt.Println("Err ", err)
@@ -112,11 +112,11 @@ func openFile(files string, flag int) int {
 
     if flag == 1{
         return characters
-    }else if flag== 2{
+    }else if flag == 2{
         return max
-    }else if flag== 3{
+    }else if flag == 3{
         return wordss
-    }else if flag== 4{
+    }else if flag == 4{
         return liness
     }
 
