@@ -15,33 +15,34 @@ func TestWc(t *testing.T) {
 		}
 	}
 
+    //Tesing all the functions against an empty file.
 	t.Run("counting words in a file", func(t *testing.T) {
-		actual := cmd.OpenFile("/home/kittu/Desktop/kittu/Projects/app/testfiles/empty.txt", 3)
+		actual := cmd.WordsInLines("./testfiles/empty.txt")
 		expected := 0
 		assertCorrectMessage(t, actual, expected)
 	})
 
 	t.Run("counting lines in a file", func(t *testing.T) {
-		actual := cmd.OpenFile("/home/kittu/Desktop/kittu/Projects/app/testfiles/empty.txt", 4)
-		expected := 1
+		actual := cmd.CountLines("./testfiles/empty.txt")
+		expected := 0
 		assertCorrectMessage(t, actual, expected)
 	})
 
 	t.Run("counting characters in a file", func(t *testing.T) {
-		actual := cmd.OpenFile("/home/kittu/Desktop/kittu/Projects/app/testfiles/empty.txt", 1)
-		expected := 13
+		actual := cmd.CountChars("./testfiles/empty.txt")
+		expected := 0
 		assertCorrectMessage(t, actual, expected)
 	})
 
 	t.Run("counting bytes in a file", func(t *testing.T) {
-		actual := cmd.PrintBytes("/home/kittu/Desktop/kittu/Projects/app/testfiles/empty.txt")
-		expected := 13
+		actual := cmd.PrintBytes("./testfiles/empty.txt")
+		expected := 0
 		assertCorrectMessage(t, actual, expected)
 	})
 
 	t.Run("counting the max line length in a file", func(t *testing.T) {
-		actual := cmd.OpenFile("/home/kittu/Desktop/kittu/Projects/app/testfiles/empty.txt", 2)
-		expected := 5
+		actual := cmd.MaxLine("./testfiles/empty.txt")
+		expected := 0
 		assertCorrectMessage(t, actual, expected)
 	})
 }

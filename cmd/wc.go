@@ -18,9 +18,6 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
-    "os"
-    "bufio"
-    "strings"
 )
 
 var bytes, chars, lines, max_line_length, words, help bool
@@ -64,16 +61,16 @@ var wcCmd = &cobra.Command{
                 fmt.Println(PrintBytes(args[0]), args[0])
 
             case chars:
-                fmt.Println(OpenFile(args[0], 1), args[0])
+                fmt.Println(CountChars(args[0]), args[0])
 
             case max_line_length:
-                fmt.Println(OpenFile(args[0], 2), args[0])
+                fmt.Println(MaxLine(args[0]), args[0])
 
             case words:
-                fmt.Println(OpenFile(args[0], 3), args[0])
+                fmt.Println(WordsInLines(args[0]), args[0])
 
             case lines:
-                fmt.Println(OpenFile(args[0], 4), args[0])
+                fmt.Println(CountLines(args[0]), args[0])
 
             default:
                 fmt.Println("WRONG COMMAND !")
@@ -82,54 +79,15 @@ var wcCmd = &cobra.Command{
 	},
 }
 
-func PrintBytes(file string) int {
-    fi, err := os.Stat(file)
-    if err != nil {
-        return 0
-    }
-    return int(fi.Size())
-}
 
-func OpenFile(files string, flag int) int {
-    file, err := os.Open(files)
-         if err != nil {
-             fmt.Println("Err ", err)
-         }
-         scanner := bufio.NewScanner(file)
-         liness, wordss, characters, max := 0, 0, 0, 0
-         for scanner.Scan() {
-             liness++
-
-             line := scanner.Text()
-             characters += len(line)
-             if len(line) > max{
-                 max = len(line)
-            }
-
-             splitLines := strings.Split(line, " ")
-             wordss += len(splitLines)
-         }
-
-    if flag == 1{
-        return characters
-    }else if flag == 2{
-        return max
-    }else if flag == 3{
-        return wordss
-    }else if flag == 4{
-        return liness
-    }
-
-    return 0
-}
 
 func init() {
 	rootCmd.AddCommand(wcCmd)
 
-    wcCmd.Flags().BoolVarP(&bytes, "bytes", "c", false, "usage")
-    wcCmd.Flags().BoolVarP(&chars, "chars", "m", false, "usage")
-    wcCmd.Flags().BoolVarP(&max_line_length, "max-line-length", "L", false, "usage")
-    wcCmd.Flags().BoolVarP(&words, "words", "w", false, "usage")
-    wcCmd.Flags().BoolVarP(&lines, "lines", "l", false, "usage")
-    wcCmd.Flags().BoolVarP(&help, "help", "h", false, "usage")
+    wcCmd.Flags().BoolVarP(&bytes, "bytes", "c", false, "Display the size of the file")
+    wcCmd.Flags().BoolVarP(&chars, "chars", "m", false, "Display the number of characters")
+    wcCmd.Flags().BoolVarP(&max_line_length, "max-line-length", "L", false, "Display the length of the line having maximum length ")
+    wcCmd.Flags().BoolVarP(&words, "words", "w", false, "Display number of words")
+    wcCmd.Flags().BoolVarP(&lines, "lines", "l", false, "Display numbe rof lines")
+    wcCmd.Flags().BoolVarP(&help, "help", "h", false, "Help")
 }
