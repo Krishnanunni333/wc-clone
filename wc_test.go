@@ -3,7 +3,8 @@ package main
 import (
 	"testing"
 
-	"app/cmd"
+	//"app/cmd"
+    W "app/cmd/workers"
 )
 
 func TestWc(t *testing.T) {
@@ -17,31 +18,31 @@ func TestWc(t *testing.T) {
 
     //Tesing all the functions against an empty file.
 	t.Run("counting words in a file", func(t *testing.T) {
-		actual := cmd.WordsInLines("./testfiles/empty.txt")
+		actual := W.WordsInLines("./testfiles/empty.txt")
 		expected := 0
 		assertCorrectMessage(t, actual, expected)
 	})
 
 	t.Run("counting lines in a file", func(t *testing.T) {
-		actual := cmd.CountLines("./testfiles/empty.txt")
+		actual := W.CountLines("./testfiles/empty.txt")
 		expected := 0
 		assertCorrectMessage(t, actual, expected)
 	})
 
 	t.Run("counting characters in a file", func(t *testing.T) {
-		actual := cmd.CountChars("./testfiles/empty.txt")
+		actual := W.CountChars("./testfiles/empty.txt")
 		expected := 0
 		assertCorrectMessage(t, actual, expected)
 	})
 
 	t.Run("counting bytes in a file", func(t *testing.T) {
-		actual := cmd.PrintBytes("./testfiles/empty.txt")
+		actual := W.PrintBytes("./testfiles/empty.txt")
 		expected := 0
 		assertCorrectMessage(t, actual, expected)
 	})
 
 	t.Run("counting the max line length in a file", func(t *testing.T) {
-		actual := cmd.MaxLine("./testfiles/empty.txt")
+		actual := W.MaxLine("./testfiles/empty.txt")
 		expected := 0
 		assertCorrectMessage(t, actual, expected)
 	})
