@@ -18,6 +18,7 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
+    W "app/cmd/workers"
 )
 
 var bytes, chars, lines, max_line_length, words, help bool
@@ -58,19 +59,19 @@ var wcCmd = &cobra.Command{
                 fmt.Println(help_doc)
 
             case bytes:
-                fmt.Println(PrintBytes(args[0]), args[0])
+                fmt.Println(W.PrintBytes(args[0]), args[0])
 
             case chars:
-                fmt.Println(CountChars(args[0]), args[0])
+                fmt.Println(W.CountChars(args[0]), args[0])
 
             case max_line_length:
-                fmt.Println(MaxLine(args[0]), args[0])
+                fmt.Println(W.MaxLine(args[0]), args[0])
 
             case words:
-                fmt.Println(WordsInLines(args[0]), args[0])
+                fmt.Println(W.WordsInLines(args[0]), args[0])
 
             case lines:
-                fmt.Println(CountLines(args[0]), args[0])
+                fmt.Println(W.CountLines(args[0]), args[0])
 
             default:
                 fmt.Println("WRONG COMMAND !")
