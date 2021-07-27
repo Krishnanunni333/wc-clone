@@ -1,4 +1,4 @@
-# wc command with golang
+# wc command using golang
 A clone of wc Unix command developed using go & cobra.
 
 Syntax
