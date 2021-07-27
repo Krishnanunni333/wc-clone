@@ -26,5 +26,5 @@ The ‘wc’ command allow an argument -L, it can be used to print out the lengt
 This option is used to display the help message.
 
 # Example
-$ app wc -m apple.txt
+$ app wc -m apple.txt </br>
   27 apple.txt
