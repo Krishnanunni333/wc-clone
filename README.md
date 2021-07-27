@@ -1,8 +1,8 @@
 # wc command using golang
 A clone of wc Unix command developed using go & cobra.
 
-Syntax
-app wc [OPTION]... [FILE]...
+Syntax <br>
+$app wc [OPTION]... [FILE]...
 
 **File name is must**
 
