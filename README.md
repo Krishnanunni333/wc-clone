@@ -28,3 +28,22 @@ This option is used to display the help message.
 # Example
 $ app wc -m apple.txt </br>
   27 apple.txt
+
+# Testing
+$ go test -v
+
+=== RUN   TestWc
+=== RUN   TestWc/counting_words_in_a_file
+=== RUN   TestWc/counting_lines_in_a_file
+=== RUN   TestWc/counting_characters_in_a_file
+=== RUN   TestWc/counting_bytes_in_a_file
+=== RUN   TestWc/counting_the_max_line_length_in_a_file
+--- PASS: TestWc (0.00s)
+    --- PASS: TestWc/counting_words_in_a_file (0.00s)
+    --- PASS: TestWc/counting_lines_in_a_file (0.00s)
+    --- PASS: TestWc/counting_characters_in_a_file (0.00s)
+    --- PASS: TestWc/counting_bytes_in_a_file (0.00s)
+    --- PASS: TestWc/counting_the_max_line_length_in_a_file (0.00s)
+PASS
+ok      app     0.050s
+
