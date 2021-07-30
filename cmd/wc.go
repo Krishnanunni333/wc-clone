@@ -18,10 +18,11 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
-    W "app/cmd/workers"
+    "app/cmd/workers"
 )
-
+// flag variables
 var bytes, chars, lines, max_line_length, words, help bool
+// help documents
 var help_doc = `Usage: wc [OPTION]... [FILE]...
   or:  wc [OPTION]... --files0-from=F
 Print newline, word, and byte counts for each FILE, and a total line if
@@ -59,19 +60,19 @@ var wcCmd = &cobra.Command{
                 fmt.Println(help_doc)
 
             case bytes:
-                fmt.Println(W.PrintBytes(args[0]), args[0])
+                fmt.Println(workers.PrintBytes(workers.OpenFile(args[0])), args[0])
 
             case chars:
-                fmt.Println(W.CountChars(args[0]), args[0])
+                fmt.Println(workers.CountChars(workers.OpenFile(args[0])), args[0])
 
             case max_line_length:
-                fmt.Println(W.MaxLine(args[0]), args[0])
+                fmt.Println(workers.MaxLine(workers.OpenFile(args[0])), args[0])
 
             case words:
-                fmt.Println(W.WordsInLines(args[0]), args[0])
+                fmt.Println(workers.WordsInLines(workers.OpenFile(args[0])), args[0])
 
             case lines:
-                fmt.Println(W.CountLines(args[0]), args[0])
+                fmt.Println(workers.CountLines(workers.OpenFile(args[0])), args[0])
 
             default:
                 fmt.Println("WRONG COMMAND !")

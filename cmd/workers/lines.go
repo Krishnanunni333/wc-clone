@@ -2,24 +2,15 @@ package workers
 
 import (
 	"bufio"
-	"os"
-    "fmt"
+	"strings"
 )
 
-func CountLines(name string) int {
-    file, err := os.Open(name)
-    if err != nil {
-        fmt.Println("Err ", err)
-        }
+func CountLines(str string) int {
 	lines := 0
 
-	scanner := bufio.NewScanner(file)
+	scanner := bufio.NewScanner(strings.NewReader(str))
 	for scanner.Scan() {
 		lines++
-	}
-
-	if err := scanner.Err(); err != nil {
-		panic("Something went wrong")
 	}
 
 	return lines

@@ -1,26 +1,9 @@
 package workers
 
 import (
-	"bufio"
-	"os"
-    "fmt"
+	"unicode/utf8"
 )
 
-func CountChars(name string) int {
-    file, err := os.Open(name)
-    if err != nil {
-        fmt.Println("Err ", err)
-        }
-	characters := 0
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-        characters += len(scanner.Text())
-	}
-
-	if err := scanner.Err(); err != nil {
-		panic("Something went wrong")
-	}
-
-	return characters
+func CountChars(str string) int {
+    return utf8.RuneCount([]byte(str))
 }

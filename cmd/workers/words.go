@@ -4,8 +4,6 @@ import (
 	"bufio"
 	"regexp"
 	"strings"
-    "os"
-    "fmt"
 )
 
 func wordsInLine(line string) int {
@@ -21,20 +19,13 @@ func wordsInLine(line string) int {
 	return strings.Count(clean, " ") + 1
 }
 
-func WordsInLines(name string) int {
-    file, err := os.Open(name)
-    if err != nil {
-        fmt.Println("Err ", err)
-        }
-	words := 0
+func WordsInLines(str string) int {
 
-	scanner := bufio.NewScanner(file)
+    words := 0
+	scanner := bufio.NewScanner(strings.NewReader(str))
+
 	for scanner.Scan() {
 		words += wordsInLine(scanner.Text())
-	}
-
-	if err := scanner.Err(); err != nil {
-		panic("Something went wrong")
 	}
 
 	return words

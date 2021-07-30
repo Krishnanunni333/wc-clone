@@ -2,28 +2,18 @@ package workers
 
 import (
 	"bufio"
-	"os"
-    "fmt"
+	"strings"
 )
 
-func MaxLine(name string) int {
-    file, err := os.Open(name)
-    if err != nil {
-        fmt.Println("Err ", err)
-        }
-	characters := 0
+func MaxLine(str string) int {
 	max := 0
 
-	scanner := bufio.NewScanner(file)
+	scanner := bufio.NewScanner(strings.NewReader(str))
 	for scanner.Scan() {
-        if len(scanner.Text()) > max{
-            max = len(scanner.Text())
+        temp := CountChars(scanner.Text())
+        if temp > max{
+            max = temp
         }
 	}
-
-	if err := scanner.Err(); err != nil {
-		panic("Something went wrong")
-	}
-
-	return characters
+	return max
 }
