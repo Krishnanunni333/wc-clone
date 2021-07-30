@@ -18,7 +18,7 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
-    "app/cmd/workers"
+    "app/workers"
 )
 // flag variables
 var bytes, chars, lines, max_line_length, words, help bool

@@ -2,9 +2,7 @@ package main
 
 import (
 	"testing"
-
-	//"app/cmd"
-    "app/cmd/workers"
+    "app/workers"
 )
 
 func TestWc(t *testing.T) {
