@@ -2,7 +2,7 @@
 A clone of wc Unix command developed using go & cobra.
 
 Syntax <br>
-$app wc [OPTION]... [FILE]...
+$ app wc [OPTION]... [FILE]...
 
 **File name is must**
 
