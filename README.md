@@ -31,8 +31,8 @@ $ app wc -m apple.txt </br>
 
 # Testing
 $ go test -v
-...
 
+```console
 === RUN   TestWc
 === RUN   TestWc/counting_words_in_a_file
 === RUN   TestWc/counting_lines_in_a_file
@@ -47,6 +47,7 @@ $ go test -v
     --- PASS: TestWc/counting_the_max_line_length_in_a_file (0.00s)
 PASS
 ok      app     0.050s
+foo
+```
 
-...
 
